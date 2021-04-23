@@ -36,3 +36,7 @@ resource "google_storage_bucket" "terraform-state" {
   location      = "EU"
 }
 
+output "bucket" {
+  value = google_storage_bucket.terraform-state.name
+}
+
