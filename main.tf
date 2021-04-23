@@ -6,15 +6,14 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket = "terraform_state_c8ef"
+    # configured via cli
   }
 }
 
-
 provider "google" {
-  project = "${var.project}"
-  region  = "${var.region}"
-  zone    = "${var.zone}"
+  project = var.project
+  region  = var.region
+  zone    = var.zone
   credentials = file(var.credentials_file)
 }
 
