@@ -39,4 +39,3 @@ resource "google_storage_bucket" "terraform-state" {
 output "bucket" {
   value = google_storage_bucket.terraform-state.name
 }
-
