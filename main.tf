@@ -5,10 +5,14 @@ terraform {
       version = "3.5.0"
     }
   }
+  backend "gcs" {
+    bucket = "terraform_state_c8ef"
+  }
 }
 
+
 provider "google" {
-  project = "terraform-innovation"
+  project = "xsd-roostinga"
   region  = "europe-west4"
   zone    = "europe-west4-a"
 }
@@ -16,3 +20,19 @@ provider "google" {
 resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
 }
+
+resource "google_service_account" "hello" {
+  count = 2
+  account_id   = "hello-service-account-id-${count.index}"
+  display_name = "Service Account ${count.index + 1}"
+}
+
+resource "random_id" "bucket" {
+  byte_length = 2
+}
+
+resource "google_storage_bucket" "terraform-state" {
+  name          = "terraform_state_${random_id.bucket.hex}"
+  location      = "EU"
+}
+
