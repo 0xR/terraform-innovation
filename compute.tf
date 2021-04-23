@@ -2,8 +2,11 @@ resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
 }
 
-module "accounts" {
-  count=2
-  source = "./modules/accounts"
-  name = "Hello SA ${count.index + 1}"
+module "account" {
+  source = "./modules/account"
+  name = "Hello SA 1"
+}
+
+output "account-id" {
+  value = module.account.account_id
 }
