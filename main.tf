@@ -12,9 +12,9 @@ terraform {
 
 
 provider "google" {
-  project = "xsd-roostinga"
-  region  = "europe-west4"
-  zone    = "europe-west4-a"
+  project = "${var.project}"
+  region  = "${var.region}"
+  zone    = "${var.zone}"
 }
 
 resource "google_compute_network" "vpc_network" {
